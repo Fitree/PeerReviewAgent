@@ -1,0 +1,45 @@
+# Basic usage of pre-commit: see https://pre-commit.com/
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      # Makes sure files end in a newline and only a newline.
+      - id: end-of-file-fixer
+      # Trims trailing whitespace.
+      - id: trailing-whitespace
+      # Attempts to load all yaml files to verify syntax.
+      - id: check-yaml
+      # Checks for a common error of placing code before the docstring.
+      - id: check-docstring-first
+      # Attempts to load all TOML files to verify syntax.
+      - id: check-toml
+      # Check for files with names that would conflict on a case-insensitive filesystem like MacOS HFS+ or Windows FAT.
+      - id: check-case-conflict
+
+  - repo: https://github.com/PyCQA/flake8
+    rev: 6.0.0
+    hooks:
+      # Check code via Flake8.
+      # Flake8 is a wrapper around these tools:
+      #   - PyFlakes
+      #   - pycodestyle
+      #   - Ned Batchelder's McCabe script
+      - id: flake8
+        name: Check PEP8
+        args: [--max-line-length=88, "--ignore=E121,E123,E126,E203,E226,E24,E704,W503,W504", "--per-file-ignores=__init__.py:F401"]
+
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.12.0
+    hooks:
+      # Sort imports.
+      - id: isort
+        name: Format imports
+        args: [--profile=black]
+
+  - repo: https://github.com/psf/black
+    rev: 23.3.0
+    hooks:
+      # Run Black for the automatic refactoring if possible.
+      - id: black
+        name: Format code
