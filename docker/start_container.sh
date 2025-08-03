@@ -6,6 +6,7 @@ docker run -it \
     --user $(id -u):$(id -g) \
     --volume $REPO_ROOT:/workspace/PeerReviewAgent \
     --volume $HOME/.gitconfig:/home/pra-$(id -un)/.gitconfig \
+    --volume $HOME/.ssh:/home/pra-$(id -un)/.ssh \
     --ipc=host \
     --network host \
     --shm-size=512g \
