@@ -5,6 +5,9 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools]
 packages = ["pra"]  # Specify the package explicitly
 
+[project.scripts]
+pra-run = "pra.run:main"
+
 [project]
 name = "PeerReviewAgent"
 version = "1.0"
@@ -26,4 +29,10 @@ dependencies = [
     "pre-commit",
     "openai",
     "nvitop",
+    # Research agent system core deps
+    "langchain",
+    "langchain-openai",
+    "langgraph",
+    "langchain-community",
+    "ddgs",
 ]
